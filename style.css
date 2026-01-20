@@ -46,6 +46,7 @@ input {
 
 /* 2. Layout Structure */
 .app-container {
+   margin-bottom: 15px;
     width: 100%;
     max-width: 420px;
     height: 100%;
