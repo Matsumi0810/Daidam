@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>だいだむ</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="icon" type="image/png" href="icon-192.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <div id="attr-selector" class="selector-area"></div>
+        <div class="roulette-container">
+            <div class="pointer"></div>
+            <canvas id="wheel-bg-canvas" width="600" height="600"></canvas>
+            <canvas id="wheel-text-canvas" width="600" height="600"></canvas>
+            <button class="center-btn" onclick="handleSpin('single')">SPIN</button>
+        </div>
+        <div class="action-area">
+            <button class="btn-main" id="all-spin-btn" onclick="handleSpin('all')">Auto Spin</button>
+            <button class="btn-main" id="pause-btn"
+                style="background:var(--bh-yellow); color:var(--bh-black); display:none;"
+                onclick="togglePause()">Pause</button>
+            <button class="btn-main" id="edit-btn" style="background:var(--bh-blue); color:var(--bh-white);"
+                onclick="openEdit()">Settings</button>
+        </div>
+    </div>
+
+    <div id="add-cat-overlay" class="overlay" onclick="closeAddCat()">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeAddCat()">&times;</span>
+            <h3>Add Categories</h3>
+            <div class="modal-body">
+                <div class="cat-manager-list" id="add-cat-content"></div>
+            </div>
+            <button class="btn-main" onclick="closeAddCat()"
+                style="background:#000; color:#fff; margin-top:15px;">DONE</button>
+        </div>
+    </div>
+
+    <div id="order-overlay" class="overlay" style="z-index: 2000;" onclick="closeOrder()">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeOrder()">&times;</span>
+            <h3>Order Settings</h3>
+            <div class="modal-body" id="order-content"></div>
+            <button class="btn-main" onclick="closeOrder()"
+                style="background:#000; color:#fff; margin-top:15px;">CONFIRM</button>
+        </div>
+    </div>
+
+    <div id="edit-overlay" class="overlay" onclick="closeEdit()">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeEdit()">&times;</span>
+            <h3>Edit Data</h3>
+            <button class="btn-main" onclick="openOrder()"
+                style="background:var(--bh-yellow); color:#000; margin-bottom:15px;">REORDER CATEGORIES</button>
+            <div style="display: flex; margin-bottom: 12px;">
+                <input type="text" id="new-cat-name" placeholder="NEW CATEGORY NAME"
+                    style="flex:1; padding:10px; border:3px solid #000; border-right:none; font-weight:bold; background:#fff;">
+                <button onclick="addCategory()"
+                    style="background: var(--bh-red); color:white; border:3px solid #000; font-weight:900; padding:0 15px;">ADD</button>
+            </div>
+            <div class="modal-body" id="edit-content"></div>
+            <button class="btn-main" onclick="closeEdit()" style="margin-top:10px;">CLOSE</button>
+        </div>
+    </div>
+
+    <div id="result-overlay" class="overlay" onclick="closeResult()">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeResult()">&times;</span>
+            <h3 style="text-align:center; color:var(--bh-red);">Draw Results</h3>
+            <div id="final-results" class="modal-body" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            </div>
+            <button class="btn-main" onclick="closeResult()"
+                style="margin-top:15px; background:var(--bh-blue);">CLOSE</button>
+        </div>
+    </div>
+
+    <div id="confirm-overlay" class="overlay" style="z-index: 3000;">
+        <div class="modal-card" style="box-shadow: 18px 18px 0 var(--bh-red);">
+            <h3 id="confirm-title">Delete Category?</h3>
+            <p id="confirm-msg" style="font-weight: bold; margin-bottom: 20px; text-align: center;"></p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <button class="btn-main" id="confirm-yes" style="background: var(--bh-red);">YES</button>
+                <button class="btn-main" onclick="closeConfirm()" style="background: var(--bh-black);">NO</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

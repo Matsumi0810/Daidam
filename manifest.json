@@ -1,0 +1,16 @@
+{
+    "name": "だいだむ",
+    "short_name": "だいだむ",
+    "description": "イラスト制作のためのランダムお題ルーレット",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#e5e5e5",
+    "theme_color": "#1a1a1a",
+    "icons": [
+        {
+            "src": "icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ]
+}
